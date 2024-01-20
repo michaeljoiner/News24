@@ -1,3 +1,4 @@
+/* Basic reset */
 body, html {
     margin: 0;
     padding: 0;
@@ -6,75 +7,48 @@ body, html {
     background-color: #f4f4f4;
 }
 
-#header {
-    background-color: #202020;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#channel-logo {
-    font-size: 2em; /* Increased font size for better visibility */
-    font-weight: bold;
-}
-
-#time-weather {
-    font-size: 1.5em; /* Increased font size for better visibility */
-}
-
+/* No header bar as per new design */
+/* Main content styles */
 #main-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 75%; /* Adjusted for better space utilization */
+    position: relative; /* For absolute positioning of children */
+    height: 70%; /* Adjusted for better space utilization */
     margin: 15px;
     padding: 20px;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* Featured news "Super" styling */
 #featured-news {
     position: absolute;
     bottom: 20%; /* Position above the ticker */
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.7); /* Lower third background */
+    color: #ffffff; /* White text for legibility */
     padding: 10px;
     box-sizing: border-box;
+    font-size: 2rem; /* Increased font for legibility */
 }
 
-#featured-news h2 {
-    margin: 0;
-    padding-bottom: 10px;
-    font-size: 2.5em; /* Increased for readability */
-    color: #ffffff; /* White text for legibility */
-}
-
-#featured-news p {
-    font-size: 1.2em;
-    color: #ffffff; /* White text for legibility */
-}
-
+/* News Ticker styles */
 #news-ticker-wrapper {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #4B9CD3; /* UNC blue for the ticker */
-    padding: 10px 0;
+    padding: 15px 0; /* Increased padding */
 }
 
 #news-ticker {
     display: flex;
     white-space: nowrap;
     animation: scroll-left 30s linear infinite; /* Slowed down for readability */
+    font-size: 1.5rem; /* Increased font for legibility */
 }
 
 .ticker-item {
-    padding: 0 2em;
-    font-size: 1.5em; /* Increased for readability */
+    padding: 0 30px; /* Increased padding */
     color: #ffffff; /* White text for legibility */
 }
 
@@ -83,17 +57,34 @@ body, html {
     100% { transform: translateX(-300%); } /* Ensuring continuous scroll */
 }
 
-/* Responsive Design */
+/* Time and weather styles */
+#time-weather {
+    position: fixed;
+    bottom: 10px; /* Or the height of your ticker */
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for 3D effect */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for 3D effect */
+    border-radius: 5px; /* Rounded corners */
+    color: white; /* White text color */
+    font-size: 1.8rem; /* Larger font size for legibility */
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Channel name styles */
+#channel-name {
+    position: fixed;
+    bottom: 100px; /* Adjust based on your layout */
+    right: 10px;
+    color: white;
+    font-size: 3rem; /* Larger font size for visibility */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for better legibility */
+    z-index: 10;
+}
+
+/* Responsive design adjustments */
 @media screen and (max-width: 768px) {
-    #time-weather, .ticker-item {
-        font-size: 1em; /* Adjust for smaller screens */
-    }
-
-    #featured-news h2 {
-        font-size: 2em; /* Adjust for smaller screens */
-    }
-
-    #featured-news p {
-        font-size: 1em; /* Adjust for smaller screens */
+    #featured-news, .ticker-item, #time-weather, #channel-name {
+        font-size: 1rem; /* Smaller font size for mobile devices */
     }
 }
