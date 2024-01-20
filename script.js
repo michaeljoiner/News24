@@ -1,4 +1,6 @@
-const weatherApiKey = 'f96b9a6d5d29a24f4461ce4dd905c4ec'; // Replace with your API key
+
+
+const weatherApiKey = 'f96b9a6d5d29a24f4461ce4dd905c4ec'; // Your API key
 const weatherApiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 const majorCities = ["New York", "London", "Tokyo", /* more cities */];
 let currentCityIndex = 0;
@@ -26,7 +28,6 @@ function rotateCityWeather() {
 }
 
 const rssFeeds = [
-    // Replace these with actual RSS feed URLs
     'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',
     'https://www.npr.org/rss/rss.php?id=1001',
     'https://feeds.bbci.co.uk/news/rss.xml',
@@ -36,7 +37,8 @@ const rssFeeds = [
     'https://www.reutersagency.com/feed/?taxonomy=category&post_type=best',
     'https://www.cnbc.com/id/100003114/device/rss/rss.html',
     'https://feeds.skynews.com/feeds/rss/world.xml',
-    'https://abcnews.go.com/abcnews/topstories'    
+    'https://abcnews.go.com/abcnews/topstories',    
+    // Add more RSS feed URLs
 ];
 
 async function fetchNews() {
@@ -45,12 +47,12 @@ async function fetchNews() {
             const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`);
             const data = await response.json();
             newsItems.push(...data.items);
+            updateNewsTicker();
+            rotateFeaturedNews();
         } catch (error) {
             console.error("Error fetching news data:", error);
         }
     }
-    updateNewsTicker();
-    rotateFeaturedNews();
 }
 
 function updateNewsTicker() {
@@ -60,17 +62,23 @@ function updateNewsTicker() {
 
 function rotateFeaturedNews() {
     let newsIndex = 0;
-    const featuredNews = document.getElementById('featured-news');
     setInterval(() => {
         if (newsItems.length > 0) {
-            const item = newsItems[newsIndex % newsItems.length];
-            featuredNews.innerHTML = `<h2>${item.title}</h2><p>${item.description}</p>`;
+            displayFeaturedNews(newsItems[newsIndex % newsItems.length]);
             newsIndex++;
         }
     }, 8000); // Rotate featured news every 8 seconds
 }
 
+function displayFeaturedNews(item) {
+    const mainNews = document.getElementById('featured-news');
+    mainNews.innerHTML = `
+        <h2>${item.title}</h2>
+        <p>${item.description}</p>
+    `;
+}
+
 // Initialization
 rotateCityWeather();
-setInterval(rotateCityWeather, 60000); // Rotate city weather every 60 seconds
+setInterval(rotateCityWeather, 60000); // Rotate weather every minute
 fetchNews();
