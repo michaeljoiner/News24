@@ -37,22 +37,32 @@ body, html {
 }
 
 #featured-news {
-    text-align: center;
-    font-size: 1.2em; /* Increased for readability */
+    position: absolute;
+    bottom: 20%; /* Position above the ticker */
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Lower third background */
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 #featured-news h2 {
     margin: 0;
     padding-bottom: 10px;
     font-size: 2.5em; /* Increased for readability */
-    color: #333;
+    color: #ffffff; /* White text for legibility */
+}
+
+#featured-news p {
+    font-size: 1.2em;
+    color: #ffffff; /* White text for legibility */
 }
 
 #news-ticker-wrapper {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: rgba(123, 175, 212);
+    background-color: #4B9CD3; /* UNC blue for the ticker */
     padding: 10px 0;
 }
 
@@ -65,6 +75,7 @@ body, html {
 .ticker-item {
     padding: 0 2em;
     font-size: 1.5em; /* Increased for readability */
+    color: #ffffff; /* White text for legibility */
 }
 
 @keyframes scroll-left {
@@ -80,5 +91,9 @@ body, html {
 
     #featured-news h2 {
         font-size: 2em; /* Adjust for smaller screens */
+    }
+
+    #featured-news p {
+        font-size: 1em; /* Adjust for smaller screens */
     }
 }
