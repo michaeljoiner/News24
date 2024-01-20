@@ -27,8 +27,16 @@ function rotateCityWeather() {
 
 const rssFeeds = [
     // Replace these with actual RSS feed URLs
-    'https://example.com/feed1.rss',
-    'https://example.com/feed2.rss'
+    'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml',
+    'https://www.npr.org/rss/rss.php?id=1001',
+    'https://feeds.bbci.co.uk/news/rss.xml',
+    'https://www.cnn.com/services/rss/',
+    'https://feeds.a.dj.com/rss/RSSWorldNews.xml',
+    'https://www.aljazeera.com/xml/rss/all.xml',
+    'https://www.reutersagency.com/feed/?taxonomy=category&post_type=best',
+    'https://www.cnbc.com/id/100003114/device/rss/rss.html',
+    'https://feeds.skynews.com/feeds/rss/world.xml',
+    'https://abcnews.go.com/abcnews/topstories'    
 ];
 
 async function fetchNews() {
