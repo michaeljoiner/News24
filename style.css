@@ -1,48 +1,81 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     background-color: #f4f4f4;
     color: #333;
 }
 
-#weather-widget, #news-content {
+.header {
+    background-color: #202020;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 24px;
+}
+
+#weather-widget {
+    background-color: #fff;
     margin: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.news-item {
     background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: calc(33% - 20px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
-#news-content div {
-    margin-bottom: 15px;
+.news-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#news-content h2 {
-    margin: 0;
-    color: #007bff;
+.news-ticker {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    overflow: hidden;
 }
 
-#news-content img {
-    max-width: 100%;
-    height: auto;
+.ticker-item {
+    display: inline-block;
+    white-space: nowrap;
+    padding-right: 50px; /* Space between ticker items */
+    animation: ticker 10s linear infinite;
 }
 
-/* CSS Animations for News Content */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
-#news-content div {
-    animation: fadeIn 1s ease-in-out;
-}
-
-/* Responsive Design for TV Aspect Ratio */
+/* Responsive design for TV aspect ratio */
 @media screen and (aspect-ratio: 16/9) {
-    body {
-        max-width: 1280px;
-        margin: auto;
+    .news-item {
+        width: calc(50% - 20px);
+    }
+}
+
+/* Additional media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .news-item {
+        width: calc(100% - 20px);
     }
 }

@@ -1,9 +1,7 @@
-
-// Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
-const weatherApiKey = 'f96b9a6d5d29a24f4461ce4dd905c4ec';
+// Replace with your actual OpenWeatherMap API key
+const weatherApiKey = 'YOUR_API_KEY';
 const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=New York&appid=${weatherApiKey}&units=metric`;
 
-// Fetch weather data
 async function fetchWeather() {
     try {
         const response = await fetch(weatherApiUrl);
@@ -19,14 +17,12 @@ function displayWeather(data) {
     weatherWidget.textContent = `Weather in ${data.name}: ${data.main.temp}°C, ${data.weather[0].main}`;
 }
 
-// RSS feed URLs
 const rssFeeds = [
     'https://www.nasa.gov/rss/dyn/breaking_news.rss',
     'http://feeds.bbci.co.uk/news/world/rss.xml',
     'https://rss.nytimes.com/services/xml/rss/nyt/World.xml'
 ];
 
-// Fetch news data
 async function fetchNews(url) {
     try {
         const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${url}`);
@@ -39,9 +35,10 @@ async function fetchNews(url) {
 
 function displayNews(newsItems) {
     const newsContent = document.getElementById('news-content');
-    newsContent.innerHTML = ''; // Clear previous content
+    newsContent.innerHTML = '';
     newsItems.forEach(item => {
         const newsElement = document.createElement('div');
+        newsElement.className = 'news-item';
         newsElement.innerHTML = `
             <h2>${item.title}</h2>
             <img src="${extractImageUrl(item.description)}" alt="News Image">
@@ -49,9 +46,9 @@ function displayNews(newsItems) {
         `;
         newsContent.appendChild(newsElement);
     });
+    updateNewsTicker(newsItems);
 }
 
-// Function to extract image URL from RSS content
 function extractImageUrl(htmlContent) {
     const div = document.createElement('div');
     div.innerHTML = htmlContent;
@@ -59,8 +56,12 @@ function extractImageUrl(htmlContent) {
     return image ? image.src : '';
 }
 
-// Initialize functions
+function updateNewsTicker(newsItems) {
+    const ticker = document.getElementById('news-ticker');
+    ticker.innerHTML = newsItems.map(item => 
+        `<span class="ticker-item">${item.title}</span>`
+    ).join('');
+}
+
 fetchWeather();
 rssFeeds.forEach(feed => fetchNews(feed));
-
-
