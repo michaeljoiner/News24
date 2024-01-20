@@ -2,70 +2,89 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
 }
 
 #header {
+    background-color: #202020;
+    color: white;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #202020;
-    color: white;
-    padding: 10px;
+}
+
+#channel-logo {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 #time-weather {
-    text-align: right;
-    font-size: 20px;
+    font-size: 1.2em;
 }
 
-#main-news {
-    height: 75%;
+#main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    margin: 15px;
     padding: 20px;
-    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.news-item {
-    display: none; /* Initially hide all news items */
-    transition: opacity 0.5s;
+#featured-news {
+    text-align: center;
 }
 
-.news-item.active {
-    display: block; /* Only show the active news item */
-    opacity: 1;
+#featured-news h2 {
+    margin: 0;
+    padding-bottom: 10px;
+    font-size: 2em;
+    color: #333;
 }
 
-#news-ticker {
+#news-ticker-wrapper {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #333;
+    background-color: rgba(0, 0, 0, 0.75);
     color: white;
-    padding: 10px;
-    overflow: hidden;
-    height: 25%;
+    padding: 10px 0;
+}
+
+#news-ticker {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    animation: scroll-left 20s linear infinite;
 }
 
 .ticker-item {
+    padding: 0 2em;
+    font-size: 1em;
     display: inline-block;
-    white-space: nowrap;
-    padding-right: 50px;
-    animation: ticker 20s linear infinite;
 }
 
-@keyframes ticker {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    #time-weather {
-        font-size: 16px;
+    #time-weather, .ticker-item {
+        font-size: 0.8em;
     }
 
-    .news-item {
-        font-size: 14px;
+    #featured-news h2 {
+        font-size: 1.5em;
     }
 }
