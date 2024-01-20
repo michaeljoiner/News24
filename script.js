@@ -1,3 +1,4 @@
+
 // Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
 const weatherApiKey = 'f96b9a6d5d29a24f4461ce4dd905c4ec';
 const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=New York&appid=${weatherApiKey}&units=metric`;
@@ -38,13 +39,28 @@ async function fetchNews(url) {
 
 function displayNews(newsItems) {
     const newsContent = document.getElementById('news-content');
+    newsContent.innerHTML = ''; // Clear previous content
     newsItems.forEach(item => {
         const newsElement = document.createElement('div');
-        newsElement.innerHTML = `<h2>${item.title}</h2><p>${item.description}</p>`;
+        newsElement.innerHTML = `
+            <h2>${item.title}</h2>
+            <img src="${extractImageUrl(item.description)}" alt="News Image">
+            <p>${item.description}</p>
+        `;
         newsContent.appendChild(newsElement);
     });
+}
+
+// Function to extract image URL from RSS content
+function extractImageUrl(htmlContent) {
+    const div = document.createElement('div');
+    div.innerHTML = htmlContent;
+    const image = div.querySelector('img');
+    return image ? image.src : '';
 }
 
 // Initialize functions
 fetchWeather();
 rssFeeds.forEach(feed => fetchNews(feed));
+
+

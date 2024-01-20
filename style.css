@@ -3,10 +3,46 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 #weather-widget, #news-content {
     margin: 20px;
     padding: 10px;
     border: 1px solid #ddd;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#news-content div {
+    margin-bottom: 15px;
+}
+
+#news-content h2 {
+    margin: 0;
+    color: #007bff;
+}
+
+#news-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* CSS Animations for News Content */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#news-content div {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Responsive Design for TV Aspect Ratio */
+@media screen and (aspect-ratio: 16/9) {
+    body {
+        max-width: 1280px;
+        margin: auto;
+    }
 }
